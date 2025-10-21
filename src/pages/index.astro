@@ -1,11 +1,36 @@
 ---
-import Welcome from '../components/Welcome.astro';
 import Layout from '../layouts/Layout.astro';
 
 // Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
 // Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+
+console.log("domain-" + Astro.url.hostname)
+
+import { getEnv } from "../lib/env";
+
+var message = getEnv("domain_" + Astro.url.hostname) || "No message can be found at this current point in time.";
+console.log(message)
 ---
 
 <Layout>
-	<Welcome />
+	<div class="hero min-h-screen">
+		<div class="hero-content bg-[#2A2A2A] text-center rounded-xl p-10">
+			<div class="max-w-xl">
+				<h1 class="text-5xl font-bold mb-6"> 🔴 Service Unavaliable 🔴 </h1>
+				<p class="text-md">
+					The Hack Cymru service you are trying to reach is temporarily unavailable.
+                    This could be because of planned maintenance, unexpected downtime or the fact that the site is still in development. Please see the notification below for specific updates.
+                    In the meantime, take a look at our <a href="https://github.com/Hack-Cymru">Github</a> and join #hack-cymru in the Hack Club Slack! 
+				</p>
+				<p class="text-md mt-3">We apologise for any inconveniences.</p>
+
+				<div role="alert" class="alert alert-info mt-12">
+					<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="h-6 w-6 shrink-0 stroke-current">
+					  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+					</svg>
+					<span>{message}</span>
+				</div>
+			</div>
+		</div>
+	</div>
 </Layout>
