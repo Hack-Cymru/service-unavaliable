@@ -6,7 +6,7 @@ import Layout from '../layouts/Layout.astro';
 
 import { getEnv } from "../lib/env";
 
-var message = getEnv("domain_" + Astro.url.hostname) || "No message can be found at this current point in time.";
+var message = getEnv("domain_" + Astro.url.hostname.replace(".", "_")) || "No message can be found at this current point in time.";
 ---
 
 <Layout>
