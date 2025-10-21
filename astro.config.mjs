@@ -9,7 +9,10 @@ import node from '@astrojs/node';
 export default defineConfig({
   output: "server",
   vite: {
-    plugins: [tailwindcss()]
+    plugins: [tailwindcss()],
+    define: {
+      'import.meta.env': '{}', // Prevent inlining __vite_import_meta_env__
+    },
   },
 
   adapter: node({
